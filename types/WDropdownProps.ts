@@ -22,7 +22,7 @@ export type DropdownOption = {
      * The icon to display alongside the dropdown option.
      * Should be a React component that accepts SVG props for styling.
      */
-    icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+    icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 };
 
 export type DropdownGroup = {

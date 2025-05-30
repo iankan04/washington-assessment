@@ -4,6 +4,9 @@ import WSelect from "@/components/ui/WSelect";
 import { Apple, Fan, Laptop, Smartphone, Rocket } from "lucide-react";
 import { DropdownGroup } from "@/types/WDropdownProps";
 
+/**
+ * The dropdown option selection. Header is optional
+ */
 const DROPDOWN_OPTIONS: DropdownGroup[] = [
     {options: [{ index: 0, label: "Apple", desc: "Some sort of fruit company", icon: Apple },
     { index: 1, label: "Fan", desc: "When you really love someone", icon: Fan }]},

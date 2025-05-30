@@ -11,7 +11,6 @@ import WSelectBox from "@/components/ui/WSelectBox";
  * Builds WSelect Parent UI component, congregates all other components into Radix-select framework
  */
 export default function WSelect({
-    value,
     onChange,
     disabled = false,
     icon: DefaultIcon,
@@ -33,22 +32,30 @@ export default function WSelect({
         if (!icon) return;
         
         // Check if we're selecting the same option
-        if (selected?.index === index && 
+        const isSame = 
+            selected?.index === index && 
             selected.label === label && 
-            selected.icon === icon) {
+            selected.icon === icon
+
+        if (isSame) {
             setSelected(null);
-        } else {
-            // Create new option with correct typing
-            const newOption: DropdownOption = {
-                index,
-                label,
-                icon
-            };
-            setSelected(newOption);
+            onChange?.("", null);
+            return;
         }
 
-        onChange?.(index.toString(), { index, label, icon });
+        // Create new option with correct typing
+        const newOption: DropdownOption = { index, label, icon };
+        setSelected(newOption);
+        onChange?.(index.toString(), newOption);
+        
     };
+
+    const handleValueChange = (val: string) => {
+        const index = parseInt(val, 10);
+        const option = flatOptions.find((o) => o.index === index);
+        if (option) handleSelect(option.index, option.label, option.icon);
+        setIsHovered(false);
+    }
 
     const handleTriggerClick = () => {if (!disabled) setIsOpen((prev) => !prev)}
 
@@ -73,13 +80,8 @@ export default function WSelect({
             onMouseLeave={() => !disabled && setIsHovered(false)}
         >
             <Select
-                value={value}
-                onValueChange={(val) => {
-                    const index = parseInt(val, 10);
-                    const option = flatOptions.find((o) => o.index === index);
-                    if (option) handleSelect(option.index, option.label, option.icon);
-                    setIsHovered(false);
-                }}
+                value={selected?.index.toString()}
+                onValueChange={handleValueChange}
                 disabled={disabled}
                 onOpenChange={(open) => {
                     if (!disabled) {

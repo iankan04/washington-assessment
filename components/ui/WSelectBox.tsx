@@ -20,7 +20,7 @@ export default function WSelectBox({
     const triggerClasses = useMemo(
         () =>
         cn(
-            "flex justify-between items-center p-[10px] w-[35vw] max-w-[500px] min-w-[200px] border-1 rounded-md transition-colors select-none",
+            "flex justify-between items-center p-[10px] w-[40vw] max-w-[500px] min-w-[200px] border-1 rounded-md transition-colors select-none",
             isFilled ? "text-brand-primary" : "text-fg-hushed",
             isOpen
             ? "border-brand-primary"
@@ -33,7 +33,7 @@ export default function WSelectBox({
     )
 
     const chevronClasses = cn(
-        "text-fg-secondary",
+        "text-fg-secondary width-[18px] h-[18px]",
         isOpen && "text-brand-primary",
         isError && "text-destructive"
     )
@@ -45,15 +45,16 @@ export default function WSelectBox({
             className={triggerClasses}
         >
             <div className="flex items-center gap-2">
-            {showLeft && <Icon className="max-w-[15px] max-h-[15px]" />}
+            {showLeft && <Icon className="w-[18px] h-[18px]" />}
             {showInput ? <input 
-                    className="flex-1 bg-transparent outline-none" 
+                    className="text-label-s" 
                     value={valueText} 
                     readOnly 
                     placeholder={placeholderText}
                     disabled={disabled}
+                    size={Math.max(valueText?.length || 0, placeholderText.length)}
                 />
-                : <span className="flex-1">{valueText}</span>
+                : <span className="">{valueText}</span>
             }
             </div>
 

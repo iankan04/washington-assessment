@@ -16,7 +16,7 @@ export interface WSelectProps {
      * @param value - The string representation of the selected option's index.
      * @param option - The full `SelectedOption` object containing details about the selected option.
      */
-    onChange?: (value: string, option: DropdownOption) => void;
+    onChange?: (value: string | null, option: DropdownOption | null) => void;
 
     /**
      * Placeholder text displayed when no option is selected.
@@ -74,5 +74,8 @@ export interface WSelectProps {
      */
     valueText?: string;
 
+    /**
+     * Dropdown options passed down from client facing page
+     */
     options: DropdownGroup[];
 }

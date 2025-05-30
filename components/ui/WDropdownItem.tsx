@@ -1,14 +1,13 @@
 import { SquareIcon } from "@/components/ui/WLeadingVisual";
 import { WDropdownItemProps } from "@/types/WDropdownItemProps";
-import { Eye } from "lucide-react";
 
 /**
  * Creates a dropdown item
  */
 export default function WDropdownItem({
     label="Label",
-    desc="Description text",
-    icon=Eye,
+    desc,
+    icon,
     selected = false,
     onClick,
 }: WDropdownItemProps
@@ -22,8 +21,8 @@ export default function WDropdownItem({
                 bg-background transition-colors
                 ${selected 
                     ? "bg-brand-silent text-brand-primary"
-                    : "bg-background hover:bg-bg-light"}
-            `} // I ended up using the bg-light (#F3F3F3) instead of bg-lighter (#FCFCFC) because the bg-lighter was barely visible
+                    : "bg-background hover:bg-bg-lighter"}
+            `}
         >
             <SquareIcon Icon={icon} />
             <div className="flex flex-col items-start text-left">
