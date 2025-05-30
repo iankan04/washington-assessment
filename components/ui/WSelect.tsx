@@ -72,8 +72,8 @@ export default function WSelect({
 
 
     return (
-        <div className={cn("flex flex-col gap-[6px] select-none [&_*]:focus:outline-none", disabled ? "opacity-50 cursor-not-allowed" : "")}>
-        {showLabel && <label className="text-label-xs">{labelText}</label>}
+        <div className={cn("flex flex-col gap-[6px] select-none [&_*]:focus:outline-none", disabled ? "opacity-50 cursor-not-allowed" : "")} suppressHydrationWarning>
+        {showLabel && <label className="text-label-xs text-fg-primary">{labelText}</label>}
         <div
             className="bg-bg-empty rounded-md"
             onMouseEnter={() => !disabled && !isOpen && setIsHovered(true)}
