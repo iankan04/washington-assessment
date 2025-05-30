@@ -1,32 +1,18 @@
-
-export type SelectedOption = {
-    index: number;
-    label: string;
-    desc?: string;
-    icon: React.ComponentType<{ className?: string }>
+export interface TriggerState {
+    isOpen: boolean,
+    isFilled: boolean,
+    isError: boolean,
+    isHovered: boolean
 }
 
-export type ComponentState = 
-  | 'empty' 
-  | 'hover' 
-  | 'expanded-empty' 
-  | 'expanded-filled' 
-  | 'filled' 
-  | 'disabled' 
-  | 'error';
-
 export interface WSelectBoxProps {
-    value?: string;
-    onChange?: (value: string, option: SelectedOption) => void;
-    placeholder?: string;
+    showLeft?: boolean;
+    showInput?: boolean;
+    icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;    
+    placeholderText?: string;
     disabled?: boolean;
-    state?: ComponentState;
+    valueText?: string;
 
-    showLeft?: boolean;        // default: true
-    icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-    showLabel?: boolean;      // default: true
-    labelText?: string;       // default: "Select an object"
-    placeholderText?: string; // default: "Placeholder"
-    showInput?: boolean;      // default: true
-    valueText?: string;       // default: "Desktop"
+    state: TriggerState
+    onTriggerClick(): void;
 }
