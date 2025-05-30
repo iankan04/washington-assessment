@@ -25,6 +25,12 @@ export type DropdownOption = {
     icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
 };
 
+export type DropdownGroup = {
+    header?: string;
+
+    options: DropdownOption[];
+}
+
 /**
  * Props for the WDropdown component.
  */
@@ -36,11 +42,7 @@ export interface WDropdownProps {
     selectedIndex: number | null;
 
     /**
-     * Callback function triggered when an item in the dropdown is clicked.
-     * 
-     * @param index - The index of the clicked item.
-     * @param label - The label (text) of the clicked item.
-     * @param icon - The icon associated with the clicked item, if any.
+     * The set of options passed down
      */
-    onClick: (index: number, label: string, icon?: React.ComponentType<{ className?: string }>) => void;
+    options: DropdownGroup[];
 }

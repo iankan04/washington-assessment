@@ -1,12 +1,4 @@
-/**
- * Stores WSelectItem type information. See WSelectItem for content database
- */
-export type SelectedOption = {
-    index: number;
-    label: string;
-    desc?: string;
-    icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-}
+import { DropdownOption, DropdownGroup } from "./WDropdownProps";
 
 /**
  * Props for the WSelect component.
@@ -24,7 +16,7 @@ export interface WSelectProps {
      * @param value - The string representation of the selected option's index.
      * @param option - The full `SelectedOption` object containing details about the selected option.
      */
-    onChange?: (value: string, option: SelectedOption) => void;
+    onChange?: (value: string, option: DropdownOption) => void;
 
     /**
      * Placeholder text displayed when no option is selected.
@@ -81,4 +73,6 @@ export interface WSelectProps {
      * @default "Desktop"
      */
     valueText?: string;
+
+    options: DropdownGroup[];
 }

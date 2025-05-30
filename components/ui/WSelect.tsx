@@ -20,6 +20,7 @@ export default function WSelect({
     placeholderText = "Placeholder",
     showLeft = true,
     showInput = true,
+    options,
 }: WSelectProps) {
     const [selected, setSelected] = useState<DropdownOption | null>(null)
     const [isHovered, setIsHovered] = useState(false)
@@ -45,7 +46,7 @@ export default function WSelect({
             };
             setSelected(newOption);
         }
-        
+
         onChange?.(index.toString(), { index, label, icon });
     };
 
@@ -60,22 +61,32 @@ export default function WSelect({
 
     const ActiveIcon = selected?.icon ?? DefaultIcon
     const displayText = selected?.label ?? placeholderText
+    const flatOptions: DropdownOption[] = options.flatMap(group => group.options);
+
 
     return (
-        <div className={cn("flex flex-col gap-[6px]", disabled ? "opacity-50 cursor-not-allowed" : "")}>
+        <div className={cn("flex flex-col gap-[6px] select-none [&_*]:focus:outline-none", disabled ? "opacity-50 cursor-not-allowed" : "")}>
         {showLabel && <label className="text-label-xs">{labelText}</label>}
         <div
             className="bg-bg-empty rounded-md"
-            onMouseEnter={() => !disabled && setIsHovered(true)}
+            onMouseEnter={() => !disabled && !isOpen && setIsHovered(true)}
             onMouseLeave={() => !disabled && setIsHovered(false)}
         >
             <Select
                 value={value}
-                onValueChange={() => {
-                    if (selected) handleSelect(selected.index, selected.label, selected.icon)
+                onValueChange={(val) => {
+                    const index = parseInt(val, 10);
+                    const option = flatOptions.find((o) => o.index === index);
+                    if (option) handleSelect(option.index, option.label, option.icon);
+                    setIsHovered(false);
                 }}
                 disabled={disabled}
-                onOpenChange={open => !disabled && setIsOpen(open)}
+                onOpenChange={(open) => {
+                    if (!disabled) {
+                        setIsOpen(open)
+                        if (!open) setIsHovered(false);
+                    } 
+                }}
             >
             <SelectTrigger>
                 <WSelectBox 
@@ -89,8 +100,8 @@ export default function WSelect({
                     onTriggerClick={handleTriggerClick}
                 />
             </SelectTrigger>
-            <SelectContent avoidCollisions={false} position="popper" className="mt-[10px]">
-                <WDropdown onClick={handleSelect} selectedIndex={selected?.index ?? null} />
+            <SelectContent avoidCollisions={false} position="popper" className="mt-[10px] [&_*]:focus:outline-none">
+                <WDropdown options={options} selectedIndex={selected?.index ?? null} />
             </SelectContent>
             </Select>
         </div>

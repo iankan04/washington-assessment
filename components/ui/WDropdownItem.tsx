@@ -14,12 +14,11 @@ export default function WDropdownItem({
 }: WDropdownItemProps
 ) {
     return (
-        <button
-            type="button"
+        <div
             onClick={onClick}
             data-state={selected ? "selected" : "unselected"}
             className={`
-                group flex items-center w-fill py-[8px] px-[12px] gap-[10px]
+                group flex items-center w-full py-[8px] px-[12px] gap-[10px]
                 bg-background transition-colors
                 ${selected 
                     ? "bg-brand-silent text-brand-primary"
@@ -31,6 +30,6 @@ export default function WDropdownItem({
                 {label && <span className="text-label-s">{label}</span>}
                 {desc && <span className="text-body-xs text-fg-secondary">{desc}</span>}
             </div>
-        </button>
+        </div>
     );
 }
