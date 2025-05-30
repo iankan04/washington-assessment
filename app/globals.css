@@ -39,6 +39,7 @@
   --color-foreground: var(--fg-primary);
   --color-border: var(--bg-medium);
   --color-ring: var(--brand-primary);
+  --shadow-menu: var(--outer-shadow), var(--inner-shadow);
 }
 
 :root {
@@ -103,6 +104,9 @@
   --text-label-s: 500 14px/150% var(--font-sans);
   --text-label-xs: 500 12px/150% var(--font-sans);
   --text-label-letter-spacing: -0.02em;
+    /* Shadow menu */
+  --outer-shadow: 2px 12px 24px 0 rgba(0, 0, 0, 0.1); 
+  --inner-shadow: 1px 4px 8px 0 rgba(0, 0, 0, 0.15); 
 }
 
 .dark {
