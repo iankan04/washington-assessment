@@ -3,10 +3,10 @@ import { ChevronDown, ChevronUp, Blocks } from "lucide-react"
 import { WSelectBoxProps } from "@/types/WSelectBoxProps"
 import { useMemo } from "react";
 
-/* 
-Builds WSelectBox UI component, allows for changes in styling based on state variable
-Note: chose to use boolean flags rather than state strings because strings are not mutually exclusive (i.e. hovering while filled) 
-*/
+/**
+ * Builds WSelectBox UI component, allows for changes in styling based on state variable
+ * Note: chose to use boolean flags rather than state strings because strings are not mutually exclusive (i.e. hovering while filled) 
+ */
 export default function WSelectBox({
     state: { isOpen, isFilled, isError, isHovered },
     showLeft = true,

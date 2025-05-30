@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { WSelectProps, SelectedOption } from "@/types/WSelectProps";
+import { WSelectProps } from "@/types/WSelectProps";
+import { DropdownOption } from "@/types/WDropdownProps";
 import { TriggerState } from "@/types/WSelectBoxProps";
 import WDropdown from "@/components/ui/WDropdown";
 import { cn } from "@/lib/utils";
 import { Select, SelectTrigger, SelectContent } from "@radix-ui/react-select";
 import WSelectBox from "@/components/ui/WSelectBox";
 
-/*
-Builds WSelect Parent UI component, congregates all other components into Radix-select framework
-*/
+/**
+ * Builds WSelect Parent UI component, congregates all other components into Radix-select framework
+ */
 export default function WSelect({
     value,
     onChange,
@@ -20,7 +21,7 @@ export default function WSelect({
     showLeft = true,
     showInput = true,
 }: WSelectProps) {
-    const [selected, setSelected] = useState<SelectedOption | null>(null)
+    const [selected, setSelected] = useState<DropdownOption | null>(null)
     const [isHovered, setIsHovered] = useState(false)
     const [isOpen, setIsOpen] = useState(false)
 
@@ -37,7 +38,7 @@ export default function WSelect({
             setSelected(null);
         } else {
             // Create new option with correct typing
-            const newOption: SelectedOption = {
+            const newOption: DropdownOption = {
                 index,
                 label,
                 icon

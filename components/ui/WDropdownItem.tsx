@@ -2,6 +2,9 @@ import { SquareIcon } from "@/components/ui/WLeadingVisual";
 import { WDropdownItemProps } from "@/types/WDropdownItemProps";
 import { Eye } from "lucide-react";
 
+/**
+ * Creates a dropdown item
+ */
 export default function WDropdownItem({
     label="Label",
     desc="Description text",

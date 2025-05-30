@@ -1,15 +1,11 @@
 import WDropdownItem from "@/components/ui/WDropdownItem";
 import WDropdownHeader from "./WDropdownHeader";
 import { Apple, Fan, Laptop, Smartphone, Rocket } from "lucide-react";
-import { WDropdownProps } from "@/types/WDropdownProps";
+import { WDropdownProps, DropdownOption } from "@/types/WDropdownProps";
 
-type DropdownOption = {
-    index: number;
-    label: string;
-    desc?: string;
-    icon: React.ComponentType<{ className?: string }>;
-}
-
+/**
+ * Database that stores all DropdownOption information
+ */
 const DROPDOWN_OPTIONS: DropdownOption[] = [
     { index: 0, label: "Apple", desc: "Some sort of fruit company", icon: Apple },
     { index: 1, label: "Fan", desc: "When you really love someone", icon: Fan },
@@ -18,6 +14,9 @@ const DROPDOWN_OPTIONS: DropdownOption[] = [
     { index: 4, label: "Space travel", desc: "Reaching for the stars", icon: Rocket },
 ];
 
+/**
+ * Creates Dropdown component that lists all dropdown options
+ */
 export default function WDropdown({
     selectedIndex,
     onClick,

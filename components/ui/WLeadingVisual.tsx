@@ -1,3 +1,6 @@
+/**
+ * Factory function to create icons
+ */
 function IconContainer({
   Icon,
   variant = "circle",
@@ -16,12 +19,18 @@ function IconContainer({
   );
 }
 
+/**
+ * Uses IconContainer to create circle type icon
+ */
 function CircleIcon({ Icon }: { Icon?: React.ComponentType<{ className?: string }> }) {
     return (
         <IconContainer Icon={Icon}/>
     )
 }
 
+/**
+ * Uses IconContainer to create square type icon
+ */
 function SquareIcon({ Icon }: { Icon?: React.ComponentType<{ className?: string }> }) {
     return (
         <IconContainer Icon={Icon} variant="square"/>
